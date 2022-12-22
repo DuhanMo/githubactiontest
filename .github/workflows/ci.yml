@@ -45,4 +45,13 @@ jobs:
         with:
           junit_files: build/test-results/**/*.xml
 
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: devduhanmo/beside13-6/image
+          tags: v1, latest
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
 
