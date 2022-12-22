@@ -45,6 +45,10 @@ jobs:
         with:
           junit_files: build/test-results/**/*.xml
 
+      - name: Build with Gradle
+        run: ./gradlew build -x test
+        shell: bash
+
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
