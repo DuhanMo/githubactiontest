@@ -31,23 +31,19 @@ jobs:
           distribution: 'temurin'
 
       # Gradle 권한 부여
-      - name: Grand Execute permission for gradlew
+      - name: Grant Execute permission for gradlew
         run: chmod +x gradlew
         shell: bash
 
-      # test 없이 빌드 진행
-      - name: Build without Test
-        run: ./gradlew build -x test
+
+      - name: Test with Gradle
+        run: ./gradlew clean test
         shell: bash
 
-      # local 환경으로 테스트 진행
-      - name: Test with Gardle
-        run: SPRING_PROFILES_ACTIVE=[local] ./gradlew clean test
-        shell: bash
-
-      # Test 통과 실패시 표시
-      - name: Publish Unit Test Result
+      # 테스트 후 Result를 보기위해 Publish Unit Test Results step 추가
+      - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: ${{ always() }}
+        if: ${{ always() }}  # 테스트가 실패하여도 Report를 보기 위해 `always`로 설정
         with:
           files: build/test-results/**/*.xml
+
