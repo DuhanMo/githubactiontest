@@ -9,6 +9,6 @@ public class SampleTest {
 
     @Test
     public void failure_test() {
-        assertThat(3+1).isEqualTo(1);
+        assertThat(3+1).isEqualTo(4);
     }
 }
