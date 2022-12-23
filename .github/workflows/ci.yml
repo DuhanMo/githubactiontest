@@ -48,11 +48,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Dockerfile Build and push
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: devduhanmo/beside13-6:latest
-          file: ./Dockerfile
+        run: docker build --tag devduhanmo/beside13-6:latest . && docker push devduhanmo/beside13-6:latest
 
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.6
