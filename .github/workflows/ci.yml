@@ -37,30 +37,6 @@ jobs:
         with:
           junit_files: build/test-results/**/*.xml
 
-      - name: Build with Gradle
-        run: ./gradlew build -x test
-        shell: bash
-
-      - name: Temporarily save build artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-artifact
-          path: build
-          retention-days: 1
-
-  docker:
-    name: Deploy Docker Image
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Retrieve built
-        uses: actions/download-artifact@v2
-        with:
-          name: build-artifact
-          path: build
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -78,4 +54,5 @@ jobs:
         with:
           push: true
           tags: devduhanmo/beside13-6:latest
+
 
