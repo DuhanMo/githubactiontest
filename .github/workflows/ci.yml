@@ -38,7 +38,7 @@ jobs:
           junit_files: build/test-results/**/*.xml
 
       - name: Build with Gradle
-        run: ./gradlew build -x test
+        run: ./gradlew build -x test && pwd
         shell: bash
 
       - name: Set up QEMU
