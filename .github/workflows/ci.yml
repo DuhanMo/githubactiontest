@@ -58,5 +58,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            docker rm -f $(docker ps -qa)
             docker pull devduhanmo/beside13-6:latest
             docker run -d -p 80:8080 devduhanmo/beside13-6:latest --name app
+            docker image prune -f
